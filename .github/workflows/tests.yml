@@ -44,7 +44,7 @@ jobs:
           path: '**/formated-report/'
 
       - name: Enviar Notificação Slack - Sucesso
-        if: ${{ sucess() }}
+        if: ${{ success() }}
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}

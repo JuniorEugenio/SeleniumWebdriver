@@ -43,5 +43,24 @@ jobs:
           name: report-tests
           path: '**/formated-report/'
 
+      - name: Enviar notificação para o Slack - Sucesso
+        if: ${{ success() }}
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_COLOR: ${{ job.status }}
+          SLACK_ICON_EMOJI: https://www.flaticon.com/br/icone-gratis/aprovado_4157080
+          SLACK_MESSAGE: 'Sucesso na execução de testes de PR :white_check_mark:'
+          SLACK_TITLE: 'Sucesso na execução de testes de PR :white_check_mark:'
+          SLACK_USERNAME: SUCESSO
 
-
+      - name: Enviar notificação para o Slack - Falha
+        if: ${{ failure() }}
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_COLOR: ${{ job.status }}
+          SLACK_ICON_EMOJI: https://pt.dreamstime.com/fotografia-de-stock-royalty-free-%C3%ADcone-do-erro-cr%C3%ADtico-image8363117
+          SLACK_MESSAGE: 'Erro na execução de testes de PR :fire:'
+          SLACK_TITLE: 'Erro na execução de testes de PR :fire:'
+          SLACK_USERNAME: FALHA

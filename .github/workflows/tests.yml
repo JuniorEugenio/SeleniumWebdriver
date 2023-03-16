@@ -30,7 +30,11 @@ jobs:
           sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 & # optional
 
       - name: Run Test
+<<<<<<< HEAD
         run: mvn test -Dtest=RunCucumber -Dbrowser=chrome-ci -Dcucumber.options="--tags @login-sucesso"
+=======
+        run:  mvn test -Dtest=RunCucumber -Dbrowser=chrome -Dcucumber.options="--tags @login-sucesso"
+>>>>>>> 39a686938585fd2ba70d55d4335fad2ff4071f64
 
       - name: Gerar relatório
         if: always()
